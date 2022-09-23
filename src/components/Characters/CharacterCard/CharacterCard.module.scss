@@ -1,0 +1,54 @@
+.container {
+  display: inline-flex;
+  flex-direction: column;
+  width: 200px;
+  height: 318px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 .5rem #636667;
+  color: #000;
+
+  & img {
+    border-radius: 10px 10px 0 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 0 1rem #3bff00;
+  }
+
+  .statusWrapper {
+    position: absolute;
+
+    .status {
+      color: #fff;
+      width: 70px;
+      padding-left: 3px;
+      padding-right: 3px;
+      border-radius: 5px;
+      text-align: center;
+      position: relative;
+      right: -115px;
+      top: 7px;
+    }
+  }
+
+  .name {
+    font-weight: bold;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 5px;
+    text-align: left;
+  }
+}
+
+
+
+
+
+
