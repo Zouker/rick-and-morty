@@ -2,6 +2,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {api} from '../../api/api';
 import {RootState} from '../store';
 import {FilterCharactersType} from './types';
+import {AxiosError} from 'axios';
 
 export const getCharacters = createAsyncThunk('character/getCharacters', async (param, {
     getState,
@@ -11,7 +12,8 @@ export const getCharacters = createAsyncThunk('character/getCharacters', async (
         const params: FilterCharactersType = (getState() as RootState).characters.params
         const {data} = await api.getCharacters(params)
         return {characters: data.results}
-    } catch (error) {
+    } catch (err) {
+        const error = err as AxiosError
         return rejectWithValue(error)
     }
 })

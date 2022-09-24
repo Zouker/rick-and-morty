@@ -28,19 +28,26 @@ const charactersSlice = createSlice({
     },
     extraReducers: builder => {
         builder.addCase(getCharacters.pending, (state) => {
-            state.status = Status.LOADING
-            state.characters = []
+            state.status = Status.LOADING;
+            state.characters = [];
         })
         builder.addCase(getCharacters.fulfilled, (state, action) => {
-            state.characters = action.payload.characters
-            state.status = Status.SUCCESS
+            state.characters = action.payload.characters;
+            state.status = Status.SUCCESS;
         })
         builder.addCase(getCharacters.rejected, (state) => {
             state.status = Status.ERROR;
-            state.characters = []
+            state.characters = [];
         })
-        builder.addCase(getCharacterById.fulfilled,(state,action)=>{
-            state.character = action.payload
+        builder.addCase(getCharacterById.pending, (state) => {
+            state.status = Status.LOADING;
+        })
+        builder.addCase(getCharacterById.fulfilled, (state, action) => {
+            state.character = action.payload;
+            state.status = Status.SUCCESS;
+        })
+        builder.addCase(getCharacterById.rejected, (state) => {
+            state.status = Status.ERROR;
         })
     }
 })

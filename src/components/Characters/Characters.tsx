@@ -6,6 +6,7 @@ import styles from './Characters.module.scss'
 import {Search} from '../Search/Search';
 import {useDebounce} from '../../hooks/useDebounce';
 import {getCharacters} from '../../redux/characters/asyncActions';
+import empty from '../../assets/empty.gif'
 
 const Characters = () => {
     const characters = useAppSelector(state => state.characters.characters)
@@ -19,19 +20,24 @@ const Characters = () => {
     }
 
     useEffect(() => {
-        dispatch(changeCharactersFilter({name: debouncedValue, page:1}))
+        dispatch(changeCharactersFilter({name: debouncedValue, page: 1}))
     }, [changeCharactersFilter, debouncedValue])
 
     useEffect(() => {
         dispatch(getCharacters())
     }, [getCharacters, name])
 
+
     return (
         <div className={styles.wrapper}>
             <Search value={searchValue} onChange={onChangeSearchHandler}/>
-            <div className={styles.container}>
-                {characters?.map(el => <CharacterCard key={el.id} character={el}/>)}
-            </div>
+            {characters.length
+                ? <div className={styles.container}>
+                    {characters?.map(el => <CharacterCard key={el.id} character={el}/>)}
+                </div>
+                : <img src={empty}
+                       alt={'There is nothing here'}/>
+            }
         </div>
     );
 };
