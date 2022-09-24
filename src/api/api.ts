@@ -12,7 +12,6 @@ const instance = axios.create({
 export const api = {
     getCharacters({page, name}: FilterCharactersType) {
         return instance.get<'', AxiosResponse<CharactersResponseType>>(`/character?page=${page}&name=${name}`)
-            .then(res => res.data)
     },
     getCharacterById(id: number | null) {
         return instance.get<'', AxiosResponse<CharacterType>>(`/character/${id}`)

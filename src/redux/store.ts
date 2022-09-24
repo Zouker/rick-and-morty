@@ -1,7 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit'
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import thunk from 'redux-thunk';
-import {characters} from './characters/slice';
+import characters from './characters/slice'
 
 export const store = configureStore({
     reducer: {

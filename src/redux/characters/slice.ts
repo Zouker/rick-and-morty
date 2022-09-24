@@ -1,49 +1,49 @@
-import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {CharactersResponseType, CharacterType, FilterCharactersType} from './types';
-import {api} from '../../api/api';
-import {RootState} from '../store';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import {CharacterType, FilterCharactersType, Status} from './types';
+import {getCharacterById, getCharacters} from './asyncActions';
 
-export const getCharacters = createAsyncThunk('character/getCharacters', async (param, {
-    getState,
-    rejectWithValue
-}) => {
-    try {
-        const {page, name} = (getState() as RootState).characters.filter
-        const {results} = await api.getCharacters({page, name})
-        return {characters: results}
-    } catch (error) {
-        return rejectWithValue(error)
-    }
-})
-
-const initialState: CharactersResponseType = {
-    filter: {
+const initialState = {
+    status: Status.LOADING,
+    params: {
         page: 1,
         name: ''
-    },
+    } as FilterCharactersType,
     info: {
         count: 0,
         pages: 0,
         next: '',
         prev: null
     },
-    results: [] as CharacterType[],
+    characters: [] as CharacterType[],
+    character: {} as CharacterType
 }
 
 const charactersSlice = createSlice({
-    name: 'characters',
+    name: 'character',
     initialState,
     reducers: {
         changeCharactersFilter: (state, action: PayloadAction<FilterCharactersType>) => {
-            state.filter = action.payload
+            state.params = action.payload
         },
     },
     extraReducers: builder => {
+        builder.addCase(getCharacters.pending, (state) => {
+            state.status = Status.LOADING
+            state.characters = []
+        })
         builder.addCase(getCharacters.fulfilled, (state, action) => {
-            state.results = action.payload.characters
+            state.characters = action.payload.characters
+            state.status = Status.SUCCESS
+        })
+        builder.addCase(getCharacters.rejected, (state) => {
+            state.status = Status.ERROR;
+            state.characters = []
+        })
+        builder.addCase(getCharacterById.fulfilled,(state,action)=>{
+            state.character = action.payload
         })
     }
 })
 
 export const {changeCharactersFilter} = charactersSlice.actions
-export const characters = charactersSlice.reducer
+export default charactersSlice.reducer

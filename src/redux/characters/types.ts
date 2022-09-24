@@ -1,5 +1,4 @@
 export type CharactersResponseType = {
-    filter: FilterCharactersType
     info: InfoType
     results: CharacterType[]
 }
@@ -12,7 +11,7 @@ export type InfoType = {
 }
 
 export type CharacterType = {
-    id: string
+    id: number
     name: string
     status: StatusType
     species: string
@@ -40,4 +39,10 @@ export type FilterCharactersType = {
     species?: string
     type?: string
     gender?: 'female' | 'male' | 'genderless' | 'unknown'
+}
+
+export enum Status {
+    LOADING = 'loading',
+    SUCCESS = 'success',
+    ERROR = 'error',
 }

@@ -1,12 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
+import {useAppDispatch, useAppSelector} from '../../../redux/store';
+import {getCharacterById} from '../../../redux/characters/asyncActions';
 
 const CharacterDetails = () => {
     const {id} = useParams()
+    const dispatch = useAppDispatch()
+    const character = useAppSelector(state => state.characters.character)
+
+    useEffect(() => {
+        dispatch(getCharacterById(Number(id)))
+    }, [])
 
     return (
         <div>
-            Character Details
+            <img src={character.image} alt={character.name}/>
         </div>
     );
 };
