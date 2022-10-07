@@ -1,0 +1,72 @@
+@keyframes blink {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.button {
+    position: relative;
+    overflow: hidden;
+    width: 60px;
+    height: 24px;
+    background-color: #2c7a14;
+    color: #ffffff;
+    border-radius: 13px;
+    cursor: pointer;
+}
+
+.button::after {
+    display: block;
+    content: '';
+    position: absolute;
+
+    left: -100%;
+    top: 0;
+    height: 100%;
+    width: 20%;
+
+    transform: skew(45deg);
+
+    background-color: #ffffff;
+    opacity: 0.7;
+
+    z-index: 2;
+}
+
+.button:hover::after {
+    animation: blink 0.35s ease;
+    transform: skew(45deg);
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.button:hover::before {
+    display: block;
+    content: '';
+    position: absolute;
+
+    left: -100vw;
+    top: 0;
+    height: 100vh;
+    width: 300vw;
+
+    background-color: #ffffff;
+    opacity: 0.2;
+
+    z-index: 1;
+}
+
+.button:focus {
+    outline: #ffffff solid 1px;
+    border-color: #2c7a14;
+}
+
+.button:disabled {
+    background-color: #af3c21 !important;
+    color: #ffffff;
+    cursor: not-allowed;
+    pointer-events: none;
+}

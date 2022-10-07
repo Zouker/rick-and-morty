@@ -33,7 +33,7 @@ export type OriginAndLocationType = {
 }
 
 export type FilterCharactersType = {
-    page?: number
+    page: number | null
     name?: string
     status?: 'alive' | 'dead' | 'unknown'
     species?: string

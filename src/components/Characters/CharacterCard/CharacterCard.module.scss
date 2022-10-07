@@ -2,7 +2,7 @@
   display: inline-flex;
   flex-direction: column;
   width: 200px;
-  height: 318px;
+  height: 335px;
   margin: 10px;
   border-radius: 10px;
   box-shadow: 0 0 .5rem #636667;
@@ -35,6 +35,7 @@
 
   .name {
     font-weight: bold;
+    text-align: center;
   }
 
   .info {

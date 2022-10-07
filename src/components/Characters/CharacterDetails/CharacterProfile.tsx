@@ -15,21 +15,21 @@ const CharacterProfile = () => {
     }, [])
 
     return (
-            <div className={styles.wrapper}>
-                <Link className={styles.back} to={'/character'}>
-                    <img className={styles.backButton} src={back} alt={'Back'}></img>
-                </Link>
-                <img className={styles.avatar} src={character.image}
-                     alt={character.name}/>
-                <div className={styles.container}>
-                    <div>Name: {character.name}</div>
-                    <div>Status: {character.status}</div>
-                    <div>Species: {character.species}</div>
-                    <div>Gender: {character.gender}</div>
-                    <div>Origin name: {character.origin.name}</div>
-                    <div>Location: {character.location.name}</div>
-                </div>
+        <div className={styles.wrapper}>
+            <Link className={styles.back} to={'/character'}>
+                <img className={styles.backButton} src={back} alt={'Back'}></img>
+            </Link>
+            <img className={styles.avatar} src={character.image}
+                 alt={character.name}/>
+            <div className={styles.container}>
+                <div>Name: {character.name}</div>
+                <div>Status: {character.status}</div>
+                <div>Species: {character.species}</div>
+                <div>Gender: {character.gender}</div>
+                <div>Origin name: {character.origin && character.origin.name}</div>
+                <div>Location: {character.location && character.location.name}</div>
             </div>
+        </div>
     );
 };
 

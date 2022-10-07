@@ -11,7 +11,7 @@ export const getCharacters = createAsyncThunk('character/getCharacters', async (
     try {
         const params: FilterCharactersType = (getState() as RootState).characters.params
         const {data} = await api.getCharacters(params)
-        return {characters: data.results}
+        return data
     } catch (err) {
         const error = err as AxiosError
         return rejectWithValue(error)

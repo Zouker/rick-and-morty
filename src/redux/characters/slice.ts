@@ -12,7 +12,7 @@ const initialState = {
         count: 0,
         pages: 0,
         next: '',
-        prev: null
+        prev: null as null | ''
     },
     characters: [] as CharacterType[],
     character: {} as CharacterType
@@ -32,7 +32,8 @@ const charactersSlice = createSlice({
             state.characters = [];
         })
         builder.addCase(getCharacters.fulfilled, (state, action) => {
-            state.characters = action.payload.characters;
+            state.characters = action.payload.results;
+            state.info = action.payload.info;
             state.status = Status.SUCCESS;
         })
         builder.addCase(getCharacters.rejected, (state) => {
