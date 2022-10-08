@@ -59,6 +59,7 @@ const Characters = () => {
                                 nextPage={onClickNextPage}/>
                 </>
                 : status !== 'loading' && <img src={empty}
+                                               className={styles.notFound}
                                                alt={'There is nothing here'}/>
             }
         </div>
