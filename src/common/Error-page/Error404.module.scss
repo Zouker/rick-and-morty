@@ -23,6 +23,18 @@
     width: fit-content;
     height: max-content;
 
+    @media (max-width: 700px) {
+      & {
+        font-size: 17.4em;
+      }
+    }
+
+    @media (max-width: 470px) {
+      & {
+        font-size: 15.4em;
+      }
+    }
+
     &:before {
       content: '';
       background-image: url('../../assets/error404.png');

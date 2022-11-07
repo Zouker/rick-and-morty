@@ -4,6 +4,13 @@
   align-items: center;
   flex-direction: row;
   padding: 10px;
+
+  @media (max-width: 650px) {
+    & {
+      flex-direction: column;
+    }
+  }
+
   .back {
     position: relative;
 
@@ -11,6 +18,13 @@
       position: absolute;
       left: -50px;
       top: -150px;
+
+      @media (max-width: 650px) {
+        & {
+          left: -190px;
+          top: 0;
+        }
+      }
     }
   }
 

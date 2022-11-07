@@ -1,10 +1,30 @@
 .container {
   display: flex;
   justify-content: center;
+  margin: 20px 0;
 
   .search {
     position: relative;
-    width: 900px;
+    width: 920px;
+
+
+    @media (max-width: 970px) {
+      & {
+        width: 680px;
+      }
+    }
+
+    @media (max-width: 750px) {
+      & {
+        width: 440px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      & {
+        width: 200px;
+      }
+    }
 
     .icon {
       width: 24px;
